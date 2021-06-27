@@ -24,17 +24,20 @@ const Button = styled.button`
   font-weight: bold;
   letter-spacing: 2px;
   cursor: pointer;
+  font-family: helvetica;
 `;
 
 const P = styled.p`
   font-size: 25px;
+  font-family: helvetica;
 `;
 
 const MainTitle = styled.h1`
-  font-size: 55px;
+  font-size: 65px;
   letter-spacing: 2px;
   font-weight: bold;
   margin: 2rem;
+  font-family: helvetica;
 `;
 
 const HomePage = () => {
