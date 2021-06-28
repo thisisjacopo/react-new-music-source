@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import background from "../img/background.jpg";
 import axios from "axios";
@@ -37,17 +37,53 @@ const Button = styled.button`
 `;
 
 const MainPage = () => {
-  //create function to retrive data from spotify api
-  async function getAlbums() {
-    await axios.get("linkhere");
-  }
+  const data = [
+    {
+      name: "Most streamed",
+    },
+    {
+      name: "Pop",
+    },
+    {
+      name: "Rock",
+    },
+    {
+      name: "Hip Hop",
+    },
+    {
+      name: "Raggea",
+    },
+    {
+      name: "Country",
+    },
+  ];
+
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    axios("https://accounts.spotify.com/api/token", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+          "Basic" +
+          btoa(process.env.CLIENT_ID + ":" + process.env.CLIENT_SECRET),
+      },
+      data: "grant_type=client_credentials",
+      method: "POST",
+    }).then((tokenResponse) => {
+      console.log(tokenResponse.data.access_token);
+      setToken(tokenResponse.data.access_token);
+    });
+  }, []);
 
   return (
     <Section style={{ backgroundImage: `url(${background})` }}>
       <MainTitle>Please select your type favourite of genere:</MainTitle>
-      <Dropdown />
-
-      <Button>Start Discovering</Button>
+      <form onSubmit={() => {}}>
+        <Dropdown options={data} />
+        <Dropdown options={data} />
+        <Button>Start Discovering</Button>
+      </form>
     </Section>
   );
 };

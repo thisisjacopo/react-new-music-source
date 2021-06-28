@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const DD = styled.select`
@@ -13,31 +13,16 @@ const DD = styled.select`
   margin: 2rem;
 `;
 
-const Dropdown = () => {
-  const data = [
-    {
-      name: "Most streamed",
-    },
-    {
-      name: "Pop",
-    },
-    {
-      name: "Rock",
-    },
-    {
-      name: "Hip Hop",
-    },
-    {
-      name: "Raggea",
-    },
-    {
-      name: "Country",
-    },
-  ];
+
+const Dropdown = (props) => {
+  const [selectedValue, setSelectedValue] = useState("");
 
   return (
-    <DD>
-      {data.map((item, index) => (
+    <DD
+      value={selectedValue}
+      onchange={(e) => setSelectedValue(e.target.value)}
+    >
+      {props.options.map((item, index) => (
         <option key={index}>{item.name}</option>
       ))}
     </DD>
