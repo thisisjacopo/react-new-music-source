@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomePage from "./screens/HomePage";
 import MainPage from "./screens/MainPage";
 import "./App.css";
+require("dotenv").config();
 
 function App() {
   return (

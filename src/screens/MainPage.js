@@ -66,7 +66,11 @@ const MainPage = () => {
         "Content-Type": "application/json",
         Authorization:
           "Basic" +
-          btoa(process.env.CLIENT_ID + ":" + process.env.CLIENT_SECRET),
+          btoa(
+            process.env.REACT_APP_CLIENT_ID +
+              ":" +
+              process.env.REACT_APP_CLIENT_SECRET
+          ),
       },
       data: "grant_type=client_credentials",
       method: "POST",
@@ -79,7 +83,7 @@ const MainPage = () => {
   return (
     <Section style={{ backgroundImage: `url(${background})` }}>
       <MainTitle>Please select your type favourite of genere:</MainTitle>
-      <form onSubmit={() => {}}>
+      <form onSubmit={() => {}} onChange={() => {}}>
         <Dropdown options={data} />
         <Dropdown options={data} />
         <Button>Start Discovering</Button>
